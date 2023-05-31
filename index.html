@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+    <head>
+
+        <!-- CSS code -->
+        <style>
+        form {
+            margin: auto;
+            width: 35%;
+        }
+
+        .result {
+            margin: auto;
+            width: 35%;
+            border: 1px solid #ccc;
+        }
+        </style>
+
+        <title>Sales prediction model</title>
+    </head>
+
+    <body>
+
+        <!-- Use the action attribute to call the 'main' function -->
+        <form action="{{ url_for('main') }}" method="POST">
+        <fieldset>
+            <legend>Input values:</legend>
+            TV:
+            <!-- Required attribute is used to make sure people input values -->
+            <input name="TV" type="number" required>
+            <br>
+            <br> Radio:
+            <input name="Radio" type="number" required>
+            <br>
+            <br> Newspaper:
+            <input name="Newspaper" type="number" required>
+            <br>
+            <br>
+            <input type="submit">
+        </fieldset>
+        </form>
+
+        <br>
+
+        <div class="result" align="center">
+            
+            <!-- Our 'result' is false until a prediction has been made -->
+            {% if result %}
+
+                <!-- Loop through dictionary and print key:value pair -->
+                {% for variable in original_input %}
+                    <b>{{ variable }}:</b> {{ original_input[variable] }}
+                {% endfor %}
+                <br>
+                <!-- Print prediction -->
+                <br> Sales prediction is :
+                <p style="font-size:50px">{{ result }}</p>
+            
+            {% endif %}
+        </div>
+
+    </body>
+
+</html>
